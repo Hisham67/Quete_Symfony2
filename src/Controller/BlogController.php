@@ -2,7 +2,7 @@
 // src/Controller/BlogController.php
 namespace App\Controller;
 
-use App\Entity\ Article;
+use App\Entity\Article;
 use App\Entity\Category;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
