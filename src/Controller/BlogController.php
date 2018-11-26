@@ -102,4 +102,28 @@ class BlogController extends AbstractController
                 'category' => $oneCategory,
             ]);
     }
+
+    /**
+     *
+     *
+     * @param string $category the slugger
+     *
+     * @Route("blog/category/{category}/all", name="blog_show_category_all").
+     * @return Response A response instance
+     */
+
+    public function showAllByCategory() : Response
+    {
+        $categoryRepository = $this->getDoctrine()
+            ->getRepository(Category::class);
+
+
+        $categories=$categoryRepository->findAll();
+
+        return $this->render(
+            'blog/allcategory.html.twig',
+            [
+                'categories' => $categories,
+            ]);
+    }
 }
