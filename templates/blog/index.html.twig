@@ -1,4 +1,3 @@
-{# templates/blog/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Index{% endblock %}
@@ -6,6 +5,16 @@
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    {{ form_start(form) }}
+    {{ form_row(form.searchField) }}
+    <button type="submit" name="btnSearch">Rechercher</button>
+    {{ form_end(form) }}
+
     <h1>All articles from article s table : </h1>
     {% for article in articles %}
         <div>
