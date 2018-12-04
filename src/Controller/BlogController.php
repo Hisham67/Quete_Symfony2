@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Form\ArticleSearchType;
+use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -136,5 +137,32 @@ class BlogController extends AbstractController
             [
                 'categories' => $categories,
             ]);
+    }
+
+    /**
+     * Show all row from article's entity
+     *
+     * @Route("/blog/article", name="article_form")
+     * @return Response A response instance
+     */
+    public function form(Request $request) : Response
+    {
+
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid())
+        {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $manager->flush();
+            return $this->redirectToRoute('article_form');
+        }
+        return $this->render(
+            'blog/article.html.twig', [
+                'article' => $article,
+                'form' => $form->createView(),
+            ]
+        );
     }
 }
