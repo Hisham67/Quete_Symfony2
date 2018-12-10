@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+    <h1>The article {{ article.title }} </h1>
+
+    <strong>Tags :</strong>
+    <ul>
+        {% for tag in article.tags %}
+            <li>{{ tag.name }} </li>
+        {% else %}
+            <li>No tags for this article</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('homepage') }}">
+        Back to homepage.
+    </a>
+{% endblock %}

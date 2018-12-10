@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles and tags{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+        <strong>Tags :</strong>
+        <ul>
+
+                <h1> The tag : {{ tag.name }} </h1>
+
+        </ul>
+    {% for article in tag.articles %}
+        <li><a href="article/{{ article.id }}">{{ article.title }}</a></li>
+    {% endfor %}
+
+        <a href="{{ path('homepage') }}">
+        Back to homepage.
+    </a>
+
+{% endblock %}

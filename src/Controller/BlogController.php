@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Form\ArticleSearchType;
 use App\Form\ArticleType;
 use Symfony\Component\HttpFoundation\Request;
@@ -165,4 +166,22 @@ class BlogController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/article/{id}", name="article_show")
+     */
+    public function showArticle(Article $article) : Response
+    {
+        return $this->render('blog/art.html.twig', ['article'=>$article]);
+    }
+    /**
+     * @param Tag $tag
+     * @return Response
+     * @Route("blog/tag/{name}", name="blog_show_tag")
+     */
+    public function showTag(Tag $tag) : Response
+    {
+        return $this->render('blog/tag.html.twig', ['tag'=>$tag]);
+    }
+
 }
